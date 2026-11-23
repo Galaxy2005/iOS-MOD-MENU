@@ -15,6 +15,9 @@ else()
     message(STATUS "Found Geode: $ENV{GEODE_SDK}")
 endif()
 
+# Include FMOD headers globally so GeodeBindings can resolve FMOD types on iOS
+include_directories($ENV{GEODE_SDK}/loader/include/Geode/fmod)
+
 add_subdirectory($ENV{GEODE_SDK} ${CMAKE_CURRENT_BINARY_DIR}/geode)
 
 setup_geode_mod(${PROJECT_NAME})
