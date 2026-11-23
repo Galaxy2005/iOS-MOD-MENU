@@ -1,6 +1,6 @@
-#include <Geode/Geode.h>
 #include <fmod.h>
+#include <Geode/Geode.h>
 
 using namespace geode::prelude();
 
-// Your mod menu implementation hooks and code follow here...
+// Your Mod Menu code here...
