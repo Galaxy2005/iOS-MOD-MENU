@@ -11,22 +11,19 @@ else()
     message(STATUS "Found Geode: $ENV{GEODE_SDK}")
 endif()
 
-# Bring in the Geode SDK subdirectory first so its targets and variables initialize
+# 1. Bring in Geode SDK first so its targets and variables are available
 add_subdirectory($ENV{GEODE_SDK} ${CMAKE_CURRENT_BINARY_DIR}/geode)
 
+# 2. Define your mod library
 add_library(${PROJECT_NAME} SHARED
     src/main.cpp
 )
 
-# Globally force FMOD headers and loader include paths for both your mod and generated bindings
-add_compile_options(
-    -I$ENV{GEODE_SDK}/loader/include
-    -I$ENV{GEODE_SDK}/loader/include/Geode/fmod
-    -I$ENV{GEODE_SDK}/loader/include/Geode/cocos/include
-)
+# 3. Link your target against Geode so include directories, FMOD paths, and dependencies propagate automatically
+target_link_libraries(${PROJECT_NAME} PRIVATE geode)
 
-include_directories(
-    $ENV{GEODE_SDK}/loader/include
+# 4. Explicitly add FMOD include directories to target
+target_include_directories(${PROJECT_NAME} PRIVATE
     $ENV{GEODE_SDK}/loader/include/Geode/fmod
 )
 
