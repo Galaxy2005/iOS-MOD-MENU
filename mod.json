@@ -6,7 +6,7 @@
   "id": "custom.ios.megamenu",
   "name": "iOS Mod Menu",
   "version": "1.0.0",
-  "developer": "You",
+  "developer": "galaxy2005",
   "description": "Custom iOS-only utility mod menu for Geometry Dash v2.2081.",
   "settings": {
     "noclip": {
