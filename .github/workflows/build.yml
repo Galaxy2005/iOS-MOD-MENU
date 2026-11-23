@@ -17,7 +17,6 @@ jobs:
         with:
           sdk: latest
           target: ios
-          bindings: main
           configure-args: -DCMAKE_SYSTEM_NAME=iOS -DCMAKE_OSX_SYSROOT=iphoneos -DGEODE_TARGET_PLATFORM=iOS
 
       - name: Upload iOS Artifact
