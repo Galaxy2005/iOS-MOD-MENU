@@ -16,7 +16,6 @@ jobs:
         id: build
         with:
           sdk: latest
-          target: ios
           configure-args: -DGEODE_TARGET_PLATFORM=iOS
 
       - name: Upload iOS Artifact
