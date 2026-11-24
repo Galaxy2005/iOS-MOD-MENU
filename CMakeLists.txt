@@ -11,10 +11,10 @@ else()
     message(STATUS "Found Geode: $ENV{GEODE_SDK}")
 endif()
 
-# 1. Bring in the Geode SDK subdirectory to load its macros and targets
-add_subdirectory($ENV{GEODE_SDK} ${CMAKE_CURRENT_BINARY_DIR}/geode)
+# 1. Include Geode's core CMake definitions to load `add_geode_mod`
+include($ENV{GEODE_SDK}/cmake/Geode.cmake)
 
-# 2. Use Geode v5's native macro to define the mod target and source files cleanly
+# 2. Define the mod target using Geode v5's native macro
 add_geode_mod(${PROJECT_NAME}
     src/main.cpp
 )
