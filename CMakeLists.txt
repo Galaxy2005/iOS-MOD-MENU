@@ -18,10 +18,3 @@ add_subdirectory($ENV{GEODE_SDK} ${CMAKE_CURRENT_BINARY_DIR}/geode)
 add_geode_mod(${PROJECT_NAME}
     src/main.cpp
 )
-```[span_1](start_span)[span_1](end_span)
-
-### Next Steps:
-1. Save and commit this updated `CMakeLists.txt` to your repository[span_2](start_span)[span_2](end_span).
-2. Go to your GitHub **Actions** tab and re-run your workflow[span_3](start_span)[span_3](end_span). 
-
-Using `add_geode_mod` directly after `add_subdirectory` will allow Geode to fully manage bindings, FMOD types, and iOS compilation without signature conflicts[span_4](start_span)[span_4](end_span)!
