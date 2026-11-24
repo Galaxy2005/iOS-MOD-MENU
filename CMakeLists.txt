@@ -11,17 +11,21 @@ else()
     message(STATUS "Found Geode: $ENV{GEODE_SDK}")
 endif()
 
-# Explicitly set the FMOD directory cache variable for iOS bindings generation
-set(GEODE_FMOD_INCLUDE_DIR "$ENV{GEODE_SDK}/loader/include/Geode/fmod" CACHE PATH "Path to FMOD headers" FORCE)
-
-# Bring in the Geode SDK subdirectory
+# 1. Bring in the Geode SDK subdirectory first
 add_subdirectory($ENV{GEODE_SDK} ${CMAKE_CURRENT_BINARY_DIR}/geode)
 
-# Gather source files
-file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.cpp)
+# 2. Define your mod library target
+add_library(${PROJECT_NAME} SHARED
+    src/main.cpp
+)
 
-# Define your mod target library
-add_library(${PROJECT_NAME} SHARED ${SOURCES})
+# 3. Explicitly add include directories for loader and FMOD headers to your target
+target_include_directories(${PROJECT_NAME} PRIVATE
+    $ENV{GEODE_SDK}/loader/include
+    $ENV{GEODE_SDK}/loader/include/Geode/fmod
+    $ENV{GEODE_SDK}/loader/include/Geode/cocos/include
+    $ENV{GEODE_SDK}/loader/include/Geode/cocos/extensions
+)
 
-# Let Geode handle target packaging, bindings, and linking
+# 4. Let Geode handle packaging, bindings, and setup macro
 setup_geode_mod(${PROJECT_NAME})
