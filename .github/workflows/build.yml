@@ -13,14 +13,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Set up Geode CLI
-      uses: geode-sdk/install-geode-cli@v1
-
-    - name: Set up Geode SDK
-      uses: geode-sdk/setup-geode-sdk@v1
+    - name: Build Geode Mod
+      uses: geode-sdk/build-geode-mod@main
       with:
         sdk: v5.11.2
-
-    - name: Build Mod
-      run: |
-        geode package build --platform iOS
+        target: iOS
