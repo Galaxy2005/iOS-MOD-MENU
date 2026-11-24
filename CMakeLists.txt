@@ -1,21 +1,9 @@
 cmake_minimum_required(VERSION 3.21)
-set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_OSX_ARCHITECTURES "arm64")
 
-if ("${CMAKE_SYSTEM_NAME}" STREQUAL "iOS" OR IOS)
-    set(CMAKE_OSX_ARCHITECTURES "arm64")
-else()
-    set(CMAKE_OSX_ARCHITECTURES "arm64;x86_64")
-endif()
-
-set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 project(ios-mod-menu VERSION 1.0.0)
-
-# Gather source files recursively
-file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.cpp)
-
-# Define your mod shared library target
-add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
 if (NOT DEFINED ENV{GEODE_SDK})
     message(FATAL_ERROR "Unable to find Geode SDK! Please define GEODE_SDK environment variable")
@@ -23,8 +11,17 @@ else()
     message(STATUS "Found Geode: $ENV{GEODE_SDK}")
 endif()
 
-# Bring in the Geode SDK via subdirectory
+# Explicitly set the FMOD directory cache variable for iOS bindings generation
+set(GEODE_FMOD_INCLUDE_DIR "$ENV{GEODE_SDK}/loader/include/Geode/fmod" CACHE PATH "Path to FMOD headers" FORCE)
+
+# Bring in the Geode SDK subdirectory
 add_subdirectory($ENV{GEODE_SDK} ${CMAKE_CURRENT_BINARY_DIR}/geode)
 
-# Set up dependencies, bindings, and linking
+# Gather source files
+file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.cpp)
+
+# Define your mod target library
+add_library(${PROJECT_NAME} SHARED ${SOURCES})
+
+# Let Geode handle target packaging, bindings, and linking
 setup_geode_mod(${PROJECT_NAME})
