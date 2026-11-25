@@ -1,4 +1,4 @@
-name: Build Geode iOS Mod
+name: Build Geode Mod
 
 on:
   push:
@@ -7,22 +7,8 @@ on:
 jobs:
   build:
     runs-on: macos-latest
-    strategy:
-      matrix:
-        include:
-          - target: iOS
-            platform: ios
     steps:
       - uses: actions/checkout@v4
 
       - name: Build Geode Mod
         uses: geode-sdk/build-geode-mod@main
-        with:
-          target: ${{ matrix.target }}
-        id: build
-
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: compiled-ios-mod
-          path: ${{ steps.build.outputs.build-output }}
