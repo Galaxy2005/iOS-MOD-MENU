@@ -1,33 +1,14 @@
 {
-  "geode": "5.11.2",
+  "geode": "6.0.0",
   "gd": {
-    "ios": "2.2081"
+    "win": "2.2091",
+    "android": "2.2091",
+    "mac": "2.2091",
+    "ios": "2.2091"
   },
-  "id": "custom.ios.megamenu",
+  "id": "galaxy2005.ios-mod-menu",
   "name": "iOS Mod Menu",
-  "version": "1.0.0",
-  "developer": "galaxy2005",
-  "description": "Custom iOS-only utility mod menu for Geometry Dash v2.2081.",
-  "settings": {
-    "noclip": {
-      "name": "Noclip",
-      "description": "Prevents the player from dying to obstacles.",
-      "type": "bool",
-      "default": false
-    },
-    "practice-music": {
-      "name": "Practice Music Hack",
-      "description": "Plays the normal level song in Practice Mode.",
-      "type": "bool",
-      "default": true
-    },
-    "speedhack": {
-      "name": "Speedhack Multiplier",
-      "description": "Adjusts game speed (1.0 is normal).",
-      "type": "float",
-      "default": 1.0,
-      "min": 0.1,
-      "max": 3.0
-    }
-  }
+  "version": "v1.0.0",
+  "developer": "Galaxy2005",
+  "description": "An iOS mod menu for Geometry Dash"
 }
