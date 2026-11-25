@@ -1,23 +1,8 @@
 cmake_minimum_required(VERSION 3.21)
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_OSX_ARCHITECTURES "arm64")
+project(iOS-Mod-Menu)
 
-project(ios-mod-menu VERSION 1.0.0)
+find_package(Geode REQUIRED)
 
-if (NOT DEFINED ENV{GEODE_SDK})
-    message(FATAL_ERROR "Unable to find Geode SDK! Please define GEODE_SDK environment variable")
-else()
-    message(STATUS "Found Geode: $ENV{GEODE_SDK}")
-endif()
-
-# 1. Bring in the Geode SDK subdirectory first so targets and paths are registered
-add_subdirectory($ENV{GEODE_SDK} ${CMAKE_CURRENT_BINARY_DIR}/geode)
-
-# 2. Now include Geode's core CMake definitions
-include($ENV{GEODE_SDK}/cmake/Geode.cmake)
-
-# 3. Define your mod using Geode v5's native macro
-add_geode_mod(${PROJECT_NAME}
+add_geode_mod(iOS-Mod-Menu
     src/main.cpp
 )
