@@ -1,20 +1,19 @@
-name: Build iOS Mod
+name: Build Geode Mod
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+on: [push, pull_request]
 
 jobs:
   build:
     runs-on: macos-latest
-
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Build Geode Mod
-      uses: geode-sdk/build-geode-mod@main
-      with:
-        sdk: v5.11.2
-        target: iOS
+      - name: Build the Geode mod
+        uses: geode-sdk/build-geode-mod@main
+        id: build
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: compiled-ios-mod
+          path: ${{ steps.build.outputs.build-output }}
