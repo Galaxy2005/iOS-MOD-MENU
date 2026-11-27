@@ -1,14 +1,11 @@
 {
-  "geode": "6.0.0",
+  "geode": "4.0.0",
   "gd": {
-    "win": "2.2091",
-    "android": "2.2091",
-    "mac": "2.2091",
-    "ios": "2.2091"
+    "ios": "2.2074"
   },
   "id": "galaxy2005.ios-mod-menu",
   "name": "iOS Mod Menu",
-  "version": "v1.0.0",
+  "version": "1.0.0",
   "developer": "Galaxy2005",
-  "description": "An iOS mod menu for Geometry Dash"
+  "description": "A simple iOS Geode mod menu for Geometry Dash"
 }
